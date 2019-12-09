@@ -1,0 +1,47 @@
+<!-- Доработайте пример, 005_thisExample.html, при наведении мыши к одному из блоков, цвет блока должен измениться, на уникальный, такой которого еще нету у существующих блоков. Также выведите в блок текстовое оповещение о информации цвета, который используется для фона данного блока. При попытке закрыть вкладку, придупредите пользователя о том что информация будет утеряна. Используйте window.onload.  -->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Домашнее задание 4-2 по JsA Макеев Владимир </title>
+    <style>
+            div {
+                background-color: #FF6347;
+                display: block;
+                float: left;
+                height: 160px;
+                width: 160px;
+                margin: 20px;
+            }
+    </style>
+</head>
+<body>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <script>
+        window.onbeforeunload = function() {
+            var text = 'ДАННЫЕ НЕ БУДУТ СОХРАНЕНЫ!!!';
+            return text;
+        };
+        window.onload = function(){
+            var divoll = document.getElementsByTagName('div');
+            function random(min, max) {
+                return Math.floor(Math.random() * (max - min + 1)) + min;
+            };
+            for(var i = 0; i < divoll.length; i++) {
+                divoll[i].onmouseover = function divHover(event) { 
+                    var evt = event || window.event;
+                    var curDiv = evt.target;
+                    var randomColor = 'rgb(' + random(0, 255) + ', ' + random(0, 255) + ', ' + random(0, 255) + ')';
+                    curDiv.style.backgroundColor = randomColor;
+                    curDiv.innerHTML = this.style.backgroundColor;
+                };
+            };
+        }
+    </script>
+</script>
+</body>
+</html>

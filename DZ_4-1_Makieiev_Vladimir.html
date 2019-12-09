@@ -1,0 +1,124 @@
+<!-- Напишите регулярные выражения, которые будут выбирать 
+    индекс - 55535 - 5 numbers
+    ip адресс, пример 255.255.255.255
+    цены в долларах - $0.84, $2.84, $4
+    дата в виде - 30/12/2016 - день, месяц, год
+ -->
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+ 	<meta charset="UTF-8">
+ 	<title>Домашнее задание 4-1 Макеев Владимир по JsA</title>
+ <style>
+        div {
+            display: block;
+            margin-bottom: 40px;
+        }
+        input[type="text"] {
+            width: 300px;
+            height: 25px;
+            font-size: 14px;
+            background-color:  #FFFFE0;
+
+        }
+        input[type="button"] {
+            width: 150px;
+            height: 30px;
+            background-color: #D8BFD8;
+            color: black;
+            font-size: 16px;
+            font-family: Arial Black;
+        }
+    </style>
+
+    <script>
+        window.onload = function () {
+            var digit = document.querySelector(".digit");
+            var digitBtn = document.querySelector(".digit_btn");
+            var digitDiv = document.querySelector("#digit");
+            digitBtn.onclick = checkDigit;
+            function checkDigit() {
+                let checker = /^\d{5}$/;
+                if (checker.test(digit.value)) {
+                    let p = document.createElement("p");
+                    digitDiv.appendChild(p).innerHTML = digit.value + " - " + 'Правильный ввод!';
+                } else if (digit.value === "" || digit.value === null) {
+                    alert("Введите значение");
+                } else {
+                    let p = document.createElement("p");
+                    digitDiv.appendChild(p).innerHTML = digit.value + " - " + 'Не правильный ввод! Введите заново! Требуется ввести пять цифр! ';
+                }
+            }
+            var ip_addres = document.querySelector(".ip_addres");
+            var ip_addresBtn = document.querySelector(".ip_addres_btn");
+            var ip_addresDiv = document.querySelector("#ip_addres");
+            ip_addresBtn.onclick = checkIp;
+            function checkIp() {
+                let checker = /^\d{3}\.\d{3}\.\d{3}\.\d{3}$/;
+                if (checker.test(ip_addres.value)) {
+                    let p = document.createElement("p");
+                    ip_addresDiv.appendChild(p).innerHTML = ip_addres.value + " - " + 'Правильный ввод!';
+                } else if (ip_addres.value === "" || ip_addres.value === null) {
+                    alert("Введите значение");
+                } else {
+                    let p = document.createElement("p");
+                    ip_addresDiv.appendChild(p).innerHTML = ip_addres.value + " - " + 'Не правильный ввод! Введите заново! Требуется ввести адрес в формате: ХХХ.ХХХ.ХХХ.ХХХ ! ';
+                }
+            }
+            var dollars = document.querySelector(".dollars");
+            var dollarsBtn = document.querySelector(".dollars_btn");
+            var dollarsDiv = document.querySelector("#dollars");
+            dollarsBtn.onclick = checkDollars;
+            function checkDollars() {
+                let checker = /^\$\d+$|^\$\d+\.\d{2}$/;
+                if (checker.test(dollars.value)) {
+                    let p = document.createElement("p");
+                    dollarsDiv.appendChild(p).innerHTML = dollars.value + " - " + 'Правильный ввод!';
+                } else if (dollars.value === "" || dollars.value === null) {
+                    alert("Введите значение");
+                } else {
+                    let p = document.createElement("p");
+                    dollarsDiv.appendChild(p).innerHTML = dollars.value + " - " + 'Не правильный ввод! Введите заново! Требуется ввести в начале символ $ и после запятой должно быть две цифры ! ';
+                }
+            }
+            var date = document.querySelector(".date");
+            var dateBtn = document.querySelector(".date_btn");
+            var dateDiv = document.querySelector("#date");
+            dateBtn.onclick = checkDate;
+            function checkDate() {
+                let checker = /^\d{2}\/\d{2}\/\d{4}$/;
+                if (checker.test(date.value)) {
+                    let p = document.createElement("p");
+                    dateDiv.appendChild(p).innerHTML = date.value + " - " + 'Правильный ввод!';
+                } else if (date.value === "" || date.value === null) {
+                    alert("Введите значение");
+                } else {
+                    let p = document.createElement("p");
+                    dateDiv.appendChild(p).innerHTML = date.value + " - " + 'Не правильный ввод! Введите заново! Требуется ввести дату в формате: день(ХХ)/месяц(ХХ)/год(ХХХХ) ! ';
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+<div id="digit">
+    <input class="digit" type="text" placeholder="Введите 5 цифр">
+    <input class="digit_btn" type="button" value="Ввод">
+</div>
+
+<div id="ip_addres">
+    <input class="ip_addres" type="text" placeholder="Введите ip адресс, пример 255.255.255.255">
+    <input class="ip_addres_btn" type="button" value="Ввод">
+</div>
+
+<div id="dollars">
+    <input class="dollars" type="text" placeholder="Введите цены в долларах: $0.35, $2.84, $4">
+    <input class="dollars_btn" type="button" value="Ввод">
+</div>
+
+<div id="date">
+    <input class="date" type="text" placeholder="Введите дату в формате: ДД/ММ/ГГГГ">
+    <input class="date_btn" type="button" value="Ввод">
+</div>
+</body>
+</html>
